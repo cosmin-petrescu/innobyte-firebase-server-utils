@@ -41,7 +41,7 @@ const Service = {
                 next();
             })
             .catch(function (error) {
-                res.end(JSON.stringify(error));
+                res.status(401).end(JSON.stringify(error));
             });
     },
 
@@ -75,7 +75,7 @@ const Service = {
                 next();
             })
             .catch(function () {
-                res.end(JSON.stringify({message: 'Unauthorized request', code: 'INVALID_REQUEST'}));
+                res.status(403).end(JSON.stringify({message: 'Forbidden request', code: 'INVALID_REQUEST'}));
             });
     }
 };
