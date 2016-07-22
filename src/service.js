@@ -14,33 +14,28 @@ const Service = {
      */
     verifyAuth: function (req, res, next) {
         const deferred = q.defer(),
+            error = {
+                message: 'Unauthorized request',
+                code: 'INVALID_REQUEST'
+            },
             token = req.header('x-auth-token'),
             uid = req.header('x-auth-uid'),
             auth = firebase.auth();
 
         if (!token || !uid) {
-            res.status(401).end({
-                message: 'Unauthorized request',
-                code: 'INVALID_REQUEST'
-            });
+            res.status(401).end(JSON.stringify(error));
         }
 
         auth.verifyIdToken(token)
             .then(function (decodedToken) {
                 if (uid !== decodedToken.sub) {
-                    return deferred.reject({
-                        message: 'Unauthorized request',
-                        code: 'INVALID_REQUEST'
-                    });
+                    return deferred.reject(error);
                 }
 
                 deferred.resolve(true);
             })
             .catch(function () {
-                deferred.reject({
-                    message: 'Unauthorized request',
-                    code: 'INVALID_REQUEST'
-                });
+                deferred.reject(error);
             });
 
         deferred.promise
