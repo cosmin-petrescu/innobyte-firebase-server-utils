@@ -1,0 +1,25 @@
+{
+  "name": "innobyte-firebase-server-utils",
+  "version": "1.0.0",
+  "description": "Innobyte Firebase Server utils library",
+  "keywords": [
+    "Innobyte",
+    "Firebase",
+    "library"
+  ],
+  "homepage": "http://www.innobyte.com/",
+  "license": "MIT",
+  "author": {
+    "name": "Cosmin Petrescu",
+    "email": "cosmin.petrescu@innobyte.com"
+  },
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cosmin-petrescu/innobyte-firebase-server-utils.git"
+  },
+  "dependencies": {
+    "firebase": "^3.2.0",
+    "q": "^1.4.1"
+  }
+}
