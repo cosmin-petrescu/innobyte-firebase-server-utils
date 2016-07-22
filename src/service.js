@@ -23,7 +23,7 @@ const Service = {
             auth = firebase.auth();
 
         if (!token || !uid) {
-            res.status(401).end(JSON.stringify(error));
+            return res.status(401).end(JSON.stringify(error));
         }
 
         auth.verifyIdToken(token)
