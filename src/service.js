@@ -18,6 +18,13 @@ const Service = {
             uid = req.header('x-auth-uid'),
             auth = firebase.auth();
 
+        if (!token || !uid) {
+            res.status(401).end({
+                message: 'Unauthorized request',
+                code: 'INVALID_REQUEST'
+            });
+        }
+
         auth.verifyIdToken(token)
             .then(function (decodedToken) {
                 if (uid !== decodedToken.sub) {
